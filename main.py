@@ -10,7 +10,7 @@ csr_data = pickle.load(open("pickles/csr_data.p", "rb"))
 
 
 def get_movie_recommendation(movie_name):
-    n_movies_to_reccomend = 10
+    n_movies_to_reccomend = 5
     movie_list = movies[movies["title"].str.contains(movie_name)]
 
     if len(movie_list):
@@ -49,4 +49,4 @@ if user_input:
         for elements in recom:
             st.info(elements)
     except:
-        st.info("Sorry No Data Available")
+        st.info("Sorry No Data Available!!")
