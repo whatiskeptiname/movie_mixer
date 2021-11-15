@@ -1,5 +1,6 @@
 import pickle
 import pandas as pd
+import streamlit as st
 
 
 knn = pickle.load(open("pickles/knn.p", "rb"))
@@ -35,4 +36,17 @@ def get_movie_recommendation(movie_name):
         return "NO movies found in our server!!!"
 
 
-print(get_movie_recommendation("Iron Man"))
+# Streamlit Designing
+
+st.title("Movie Mixer")
+
+user_input = st.text_input("Enter Movie Name")
+
+if user_input:
+    try:
+        recomendations = get_movie_recommendation(user_input)
+        recom = recomendations["Title"].values.tolist()
+        for elements in recom:
+            st.info(elements)
+    except:
+        st.info("Sorry No Data Available")
