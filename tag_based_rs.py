@@ -4,7 +4,7 @@ import streamlit as st
 import requests
 
 final_movies = pickle.load(open("pickles/movie_list.p", "rb"))
-similarity = pickle.load(open("pickles/similarity.p", "rb"))
+# similarity = pickle.load(open("pickles/similarity.p", "rb"))
 final_movies_titles = final_movies["title"]
 
 
@@ -18,10 +18,15 @@ def recommend(movie):
 
 
 # Streamlit Design
-
+st.header("Movie Mixer")
 selected_movie = st.selectbox("Select a file", final_movies_titles)
 
 recommend_movies = recommend(selected_movie)
 
 for i in recommend_movies:
     st.text(i)
+
+if st.button("Get Recommendations"):
+    st.write("Recommendations for {}".format(selected_movie))
+    for i in recommend_movies:
+        st.text(i)
