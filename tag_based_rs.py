@@ -4,7 +4,7 @@ import streamlit as st
 import requests
 
 final_movies = pickle.load(open("pickles/movie_list.p", "rb"))
-# similarity = pickle.load(open("pickles/similarity.p", "rb"))
+similarity = pickle.load(open("pickles/similarity.p", "rb"))
 final_movies_titles = final_movies["title"]
 
 
@@ -13,8 +13,10 @@ def recommend(movie):
     distances = sorted(
         list(enumerate(similarity[index])), reverse=True, key=lambda x: x[1]
     )
+    recommended = []
     for i in distances[1:6]:
-        return final_movies.iloc[i[0]].title
+        recommended.append(final_movies.iloc[i[0]]["title"])
+    return recommended
 
 
 # Streamlit Design
@@ -25,8 +27,3 @@ recommend_movies = recommend(selected_movie)
 
 for i in recommend_movies:
     st.text(i)
-
-if st.button("Get Recommendations"):
-    st.write("Recommendations for {}".format(selected_movie))
-    for i in recommend_movies:
-        st.text(i)
