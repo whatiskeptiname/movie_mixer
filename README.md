@@ -1,7 +1,8 @@
 # movie_mixer
 
 Recommends similar movies based on user ratings or tags of the given movie.
-Streamlit is used for UI and CNN for model.
+Streamlit is used for UI and CNN for  
+model.
 **To run the app (rating based):**
 
 ```
